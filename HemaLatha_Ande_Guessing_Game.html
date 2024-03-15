@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Guessing Game</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #container{
+                height: 400px;
+                width: 1000px;
+                background-color: rgb(186, 100, 167);
+                padding: 50px;
+                margin: 100px;
+                align-items: center;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <h3>Guessing Gamee</h3>
+            <label>Enter any number between 1 to 15</label><br/><br/>
+            <input  type="number" min="1" max="15" id="usernum"><br/><br/>
+            <button onclick="guessed()" style="background-color: aqua;">Submit</button>
+            <p id="message"></p>
+            <p id="tries-left"></p>
+        </div>
+        <script>
+            let tries = 3;
+            let num = Math.floor(Math.random()*15)+1;
+            function guessed(){
+                let guess = document.getElementById("usernum").value;
+                let msg = document.getElementById("message");
+                let tries_left = document.getElementById("tries-left");
+                if(guess <1 || guess >15){
+                    msg.textContent = "Sorry!! You need to guess a number between 1 to 15";
+                }
+                else if (guess === num){
+                        msg.textContent = "Congratulations You have guessed the number correctly!!..";
+                    }
+                else{
+                    tries--;
+                    if(guess > num){
+                        msg.textContent = "Your guess is too high!!";
+                    }
+                    
+                    else{
+                        msg.textContent = "Your guess is too low";
+                    }
+                    tries_left.textContent = "You have " +tries + "attempts left";
+                } 
+                    
+                if (tries === 0){
+                        msg.textContent = "Sorry You have exceeded the number of attempts \n The Correct number is "+ num;
+                        exit();
+                    } 
+                }
+        </script>
+    </body>
+</html>
